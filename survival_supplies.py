@@ -75,3 +75,24 @@ def generate_all_permutations(
         for perm_length in range(1, len(locations) + 1)
         for perm in generate_fixed_permutations(base_name, locations, perm_length)
     ]
+
+
+def calculate_distance(
+    path: typing.List[str],
+    distance_matrix: pd.DataFrame
+) -> float:
+    """
+    Calculate distance of a path based on the matrix of distances between
+    points.
+
+    :param path:
+        List of locations to visit.
+    :param distance_matrix:
+        Matrix of distances between each pair of locations.
+    :return:
+        Total distance of the path.
+    """
+    return sum([
+        distance_matrix.loc[path[i], path[i + 1]]
+        for i in range(len(path) - 1)
+    ])

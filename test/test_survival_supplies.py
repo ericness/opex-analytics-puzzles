@@ -1,4 +1,18 @@
+import numpy as np
+import pandas as pd
 import survival_supplies
+
+TEST_DISTANCES = pd.DataFrame(
+    data=np.array([
+        [0.0, 2.0, 3.0],
+        [2.0, 0.0, 4.0],
+        [3.0, 4.0, 0.0],
+
+    ]),
+    columns=['a', 'b', 'c'],
+    index=['a', 'b', 'c'],
+)
+
 
 
 def test_generate_fixed_permutations():
@@ -39,3 +53,9 @@ def test_generate_all_permutations():
         ['a', 'd', 'c', 'b', 'a'],
     ]
 
+
+def test_calculate_distance():
+    """Should calculate distance of path"""
+    test_path = ['a', 'b', 'c', 'a']
+    result = survival_supplies.calculate_distance(test_path, TEST_DISTANCES)
+    assert result == 9.0
