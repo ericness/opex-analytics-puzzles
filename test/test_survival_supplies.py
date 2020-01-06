@@ -13,6 +13,11 @@ TEST_DISTANCES = pd.DataFrame(
     index=['a', 'b', 'c'],
 )
 
+TEST_VALUES = {
+    'a': 0.0,
+    'b': 2.0,
+    'c': 5.0,
+}
 
 
 def test_generate_fixed_permutations():
@@ -59,3 +64,10 @@ def test_calculate_distance():
     test_path = ['a', 'b', 'c', 'a']
     result = survival_supplies.calculate_distance(test_path, TEST_DISTANCES)
     assert result == 9.0
+
+
+def test_calculate_score():
+    """Should calculate value of path"""
+    test_path = ['a', 'b', 'c', 'a']
+    result = survival_supplies.calculate_value(test_path, TEST_VALUES)
+    assert result == 7.0

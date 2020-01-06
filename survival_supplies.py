@@ -96,3 +96,23 @@ def calculate_distance(
         distance_matrix.loc[path[i], path[i + 1]]
         for i in range(len(path) - 1)
     ])
+
+
+def calculate_value(
+    path: typing.List[str],
+    location_values: typing.Dict[str, float]
+) -> float:
+    """
+    Calculate the value of a path based on the locations visited.
+
+    :param path:
+        List of locations to visit.
+    :param location_values:
+        Value of visiting each location.
+    :return:
+        Total value of the path.
+    """
+    return sum([
+        location_values[path[i]]
+        for i in range(len(path))
+    ])
